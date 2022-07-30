@@ -11,13 +11,14 @@ from scipy.stats import poisson
 import numpy as np
 import os
 
-time.sleep(5)
 
-driver = webdriver.Remote('http://selenium:4444/wd/hub',desired_capabilities=DesiredCapabilities.CHROME)
+
+
 
 
 @shared_task
 def ScrapeResult():
+    driver = webdriver.Remote('http://selenium:4444/wd/hub',desired_capabilities=DesiredCapabilities.CHROME)
     urls = [
         'https://www.flashscore.com/football/belarus/vysshaya-liga',
         'https://www.flashscore.com/football/brazil/serie-a',

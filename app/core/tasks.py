@@ -21,7 +21,7 @@ options.add_argument("enable-automation")
 options.add_argument("--disable-infobars")
 options.add_argument("--disable-dev-shm-usage")
 
-driver = webdriver.Chrome("/usr/bin/chromedriver", options=options)
+driver = webdriver.Chrome(options=options)
 
 
 @shared_task

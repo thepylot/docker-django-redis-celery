@@ -2,16 +2,16 @@ import os
 from celery import Celery
 
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE','core.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE','app.settings')
 
 
-app =Celery('core')
+app =Celery('app')
 
 app.config_from_object('django.conf:settings',namespace='CELERY')
 
 app.conf.beat_schedule ={
     'scrape_result':{
-        'task':'scrape.tasks.ScrapeResult',
+        'task':'core.tasks.ScrapeResult',
         'schedule': 600.0
     }
 }

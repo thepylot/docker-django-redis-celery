@@ -1,4 +1,9 @@
-Django>=2.2
-celery==4.4.1
-redis==3.4.1
-psycopg2>=2.7.5,<2.8.0
+Django
+celery
+webdriver-manager
+numpy
+pandas
+scipy
+selenium
+psycopg2
+redis

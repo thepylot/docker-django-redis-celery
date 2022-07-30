@@ -38,7 +38,7 @@ services:
     restart: always
     build:
       context: .
-    command: celery -A app worker -l info
+    command: celery -A app worker -l info && celery -A app beat -l info
     volumes:
       - ./app:/app
     env_file:

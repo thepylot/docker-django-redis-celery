@@ -59,9 +59,6 @@ services:
     env_file:
       - ./.env.dev
     depends_on:
-      - db
       - redis
-      - app
-      - selenium
 volumes:
   pgdata:

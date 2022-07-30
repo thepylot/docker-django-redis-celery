@@ -9,7 +9,7 @@ services:
     volumes:
       - ./app:/app
     command: >
-      sh -c "python3 manage.py makemigrations
+      sh -c "python3 manage.py makemigrations &&
             python3 manage.py migrate &&
              python3 manage.py wait_for_db &&
              python3 manage.py runserver 0.0.0.0:8000"
@@ -39,7 +39,7 @@ services:
     restart: always
     build:
       context: .
-    command: celery -A app worker -l info
+    command: celery -A app worker -l info -B
     volumes:
       - ./app:/app
     env_file:

@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% block content %} {% include "sidebar.html" %}
+
+<div class="col-10">
+  <div>
+    {% if top_predictions %}
+    <div>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">league</th>
+            <th scope="col">Fixture</th>
+            <th scope="col">H</th>
+            <th scope="col">D</th>
+            <th scope="col">A</th>
+            <th scope="col">HF</th>
+            <th scope="col">AF</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in top_predictions%}
+          <tr>
+            <td>{{i.date}}</td>
+            <td>{{i.league}}</td>
+            <td>{{i.fixture}}</td>
+            <td>{{i.home_win}}</td>
+            <td>{{i.draw}}</td>
+            <td>{{i.away_win}}</td>
+            <td>{{i.home_form}}</td>
+            <td>{{i.away_form}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div>No top prediction now</div>
+    {% endif %}
+  </div>
+</div>
+{% endblock content %}

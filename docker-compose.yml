@@ -17,7 +17,6 @@ services:
       - ./.env.dev
     depends_on:
       - db
-      - selenium
 
   db:
     image: postgres:10-alpine

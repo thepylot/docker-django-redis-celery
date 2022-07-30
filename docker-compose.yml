@@ -28,7 +28,7 @@ services:
       - pgdata:/var/lib/postgresql/data
 
   chrome:
-  image: selenium/node-chrome:4.3.0-20220726
+  image: selenium/standalone-chrome:latest
   shm_size: 2gb
   environment:
     - SE_EVENT_BUS_HOST=selenium-hub

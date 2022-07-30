@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   app:
@@ -22,8 +22,14 @@ services:
     image: postgres:10-alpine
     env_file:
       - ./.env.dev
-    volumes: 
+    volumes:
       - pgdata:/var/lib/postgresql/data
+
+  seleniun:
+    image: selenium/standalone-chrome
+    ports: -4444:4444
+    restart: always
+
   redis:
     image: redis:alpine
   celery:

@@ -17,6 +17,7 @@ services:
       - ./.env.dev
     depends_on:
       - db
+      - selenium
 
   db:
     image: postgres:10-alpine
@@ -25,7 +26,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
-  seleniun:
+  selenium:
     image: selenium/standalone-chrome
     ports:
       - "4444:4444"

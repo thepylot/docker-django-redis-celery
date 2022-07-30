@@ -39,7 +39,21 @@ services:
     restart: always
     build:
       context: .
-    command: celery -A app worker -l info -B
+    command: celery -A app worker -l info
+    volumes:
+      - ./app:/app
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - db
+      - redis
+      - app
+      - selenium
+  celery-beat:
+    restart: always
+    build:
+      context: .
+    command: celery -A app beat -l info
     volumes:
       - ./app:/app
     env_file:

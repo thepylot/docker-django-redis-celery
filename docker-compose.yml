@@ -18,7 +18,7 @@ services:
       - ./.env.dev
     depends_on:
       - db
-      - selenium
+      - chrome
 
   db:
     image: postgres:10-alpine
@@ -27,11 +27,14 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
-  selenium:
-    image: selenium/standalone-chrome
-    ports:
-      - "4444:4444"
-    restart: always
+  chrome:
+  image: selenium/node-chrome:4.3.0-20220726
+  shm_size: 2gb
+  environment:
+    - SE_EVENT_BUS_HOST=selenium-hub
+    - SE_EVENT_BUS_PUBLISH_PORT=4442
+    - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    - SE_START_XVFB=false
 
   redis:
     image: redis:alpine
@@ -49,7 +52,7 @@ services:
       - db
       - redis
       - app
-      - selenium
+      - chrome
   celery-beat:
     restart: always
     build:

@@ -18,6 +18,7 @@ import os
 
 @shared_task
 def ScrapeResult():
+    
     driver = webdriver.Remote('http://selenium:4444/wd/hub',desired_capabilities=DesiredCapabilities.CHROME)
     urls = [
         'https://www.flashscore.com/football/belarus/vysshaya-liga',

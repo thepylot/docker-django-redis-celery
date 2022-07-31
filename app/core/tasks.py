@@ -19,7 +19,7 @@ import os
 @shared_task
 def ScrapeResult():
     
-    driver = webdriver.Remote('http://localhost:5555',DesiredCapabilities.Chrome())
+    driver = webdriver.Remote('http://localhost:4444/wd/hub',DesiredCapabilities.Chrome())
     urls = [
         'https://www.flashscore.com/football/belarus/vysshaya-liga',
         'https://www.flashscore.com/football/brazil/serie-a',
@@ -337,3 +337,5 @@ def ScrapeResult():
             obj.save()
           
 
+
+    driver.Quit();

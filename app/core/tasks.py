@@ -1,6 +1,7 @@
 import json
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import pandas as pd
 import time
@@ -20,13 +21,15 @@ time.sleep(5)
 
 @shared_task
 def ScrapeResult():
-    chromeOptions = webdriver.ChromeOptions() 
-    chromeOptions.add_argument("--no-sandbox") 
-    chromeOptions.add_argument("--remote-debugging-port=9222")  # this
-    chromeOptions.add_argument("--headless") 
-    chromeOptions.add_argument("--disable-dev-shm-using")  
     
-    driver = webdriver.Remote('http://localhost:4444/wd/hub',chrome_options=chromeOptions)
+    options = Options()
+    
+    options.add_argument("--no-sandbox") 
+    options.add_argument("--remote-debugging-port=9222")  # this
+    options.add_argument("--headless") 
+    options.add_argument("--disable-dev-shm-using")  
+    
+    driver = webdriver.Remote('http://localhost:4444/wd/hub',options=options)
     urls = [
         'https://www.flashscore.com/football/belarus/vysshaya-liga',
         'https://www.flashscore.com/football/brazil/serie-a',

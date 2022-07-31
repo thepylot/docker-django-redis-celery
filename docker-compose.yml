@@ -28,8 +28,7 @@ services:
       - pgdata:/var/lib/postgresql/data
 
   chrome:
-    image: selenium/standalone-chrome:latest
-    hostname: chrome
+    image: selenium/standalone-chrome
     privileged: true
     shm_size: 2g
 

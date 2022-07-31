@@ -20,8 +20,13 @@ time.sleep(5)
 
 @shared_task
 def ScrapeResult():
+    chromeOptions = webdriver.ChromeOptions() 
+    chromeOptions.add_argument("--no-sandbox") 
+    chromeOptions.add_argument("--remote-debugging-port=9222")  # this
+    chromeOptions.add_argument("--headless") 
+    chromeOptions.add_argument("--disable-dev-shm-using")  
     
-    driver = webdriver.Remote('http://localhost:4444/wd/hub',options=webdriver.ChromeOptions())
+    driver = webdriver.Remote('http://localhost:4444/wd/hub',chrome_options=chromeOptions)
     urls = [
         'https://www.flashscore.com/football/belarus/vysshaya-liga',
         'https://www.flashscore.com/football/brazil/serie-a',

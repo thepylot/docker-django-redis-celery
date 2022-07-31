@@ -12,7 +12,7 @@ app.config_from_object('django.conf:settings',namespace='CELERY')
 app.conf.beat_schedule ={
     'scrape_result':{
         'task':'core.tasks.ScrapeResult',
-        'schedule': 60.0
+        'schedule': 600.0
     }
 }
 

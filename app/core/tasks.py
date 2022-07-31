@@ -29,7 +29,7 @@ def ScrapeResult():
     options.add_argument("--headless") 
     options.add_argument("--disable-dev-shm-using")  
     
-    driver = webdriver.Remote('http://chromed:4444/wd/hub',options=options)
+    driver = webdriver.Remote('http://chrome:4444/wd/hub',options=options)
     driver.get('wwww.google.com')
     driver.save_screenshot('image.png')
     driver.Quit();

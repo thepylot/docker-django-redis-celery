@@ -4,6 +4,7 @@ from django.db import models
 # Create your models here.
 class Prediction(models.Model):
     date = models.DateTimeField()
+    country =models.CharField(max_length=50)
     league =models.CharField(max_length=50)
     fixture =models.CharField(max_length=50)
     home_win =models.IntegerField()

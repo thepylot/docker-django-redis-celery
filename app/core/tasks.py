@@ -50,9 +50,6 @@ def ScrapeResult():
         all_matches = []
         all_leagues = []
         predictions = []
-
-        league = (url[36:39]).upper()
-
         driver.get(f'{url}/results/')
         max_show = 3
         count = 0
@@ -102,7 +99,12 @@ def ScrapeResult():
                       awayscore]
             all_matches.append(result)
         try:
-            country = driver.find_element(By.CLASS_NAME, 'heading__name').text
+            league = driver.find_element(By.CLASS_NAME, 'heading__name').text
+        except:
+            print('league')
+        
+        try:
+            country = driver.find_element(By.XPATH, '//*[@id="mc"]/div[4]/div[1]/h2/a[2]').text
         except:
             print('country')
 
@@ -112,6 +114,7 @@ def ScrapeResult():
         df.loc[df['FTHG'] == df['FTAG'], 'FTR'] = 'D'
         df.loc[df['FTHG'] < df['FTAG'], 'FTR'] = 'A'
         df['Country'] = country
+        df['League'] = league
         df['FTHG'] = df['FTHG'].astype(int)
         df['FTAG'] = df['FTAG'].astype(int)
         print('result scrappng concluded')
@@ -317,16 +320,16 @@ def ScrapeResult():
             home_probs = (poisson.pmf(range(11), HEG))
             away_probs = (poisson.pmf(range(11), AEG))
             m = (np.outer(home_probs, away_probs))
-            fixture = row['HomeTeam'] + "" + 'vs' + "" + row['AwayTeam']
+            fixture = f"{country}:+ '' + {row['HomeTeam']} + '' + 'vs' + '' + {row['AwayTeam']}"
             home_win = ((np.sum(np.tril(m, -1)))*100).round(2)
             draw = ((np.sum(np.diag(m)))*100).round(2)
             away_win = ((np.sum(np.triu(m, 1)))*100).round(2)
             date =row['Date']
-            prediction = [date,country, fixture, home_win, draw, away_win, HPR, APR]
+            prediction = [date,country,league, fixture, home_win, draw, away_win, HPR, APR]
             predictions.append(prediction)
 
         df = pd.DataFrame(predictions, columns=[
-            'Date','league', 'Teams', 'Homewin', 'Draw', 'Awaywin', 'Homeform', 'Awayform'])
+            'Date','Country','League', 'Teams', 'Homewin', 'Draw', 'Awaywin', 'Homeform', 'Awayform'])
 
         results =df.to_json(orient='records')
         parsed = json.loads(results)
@@ -339,7 +342,8 @@ def ScrapeResult():
                 home_win=result['Homewin'],
                 away_win=result['Awaywin'],
                 draw =result['Draw'],
-                league=result['league'],
+                country=result['Country'],
+                league=result['League'],
                 fixture=result['Teams'],
                 home_form=result['Homeform'],
                 away_form=result['Awayform'],

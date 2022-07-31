@@ -21,7 +21,7 @@ time.sleep(5)
 @shared_task
 def ScrapeResult():
     
-    driver = webdriver.Remote('http://localhost:5555/wd/hub',desired_capabilities= DesiredCapabilities.CHROME)
+    driver = webdriver.Remote('http://172.27.0.4:4444',desired_capabilities= DesiredCapabilities.CHROME)
     urls = [
         'https://www.flashscore.com/football/belarus/vysshaya-liga',
         'https://www.flashscore.com/football/brazil/serie-a',

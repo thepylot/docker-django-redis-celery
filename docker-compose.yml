@@ -1,4 +1,4 @@
-version: "3"
+version: "3.8"
 
 services:
   app:
@@ -29,9 +29,9 @@ services:
 
   chrome:
     image: selenium/standalone-chrome:latest
-    ports:
-      - 5555:5555
-    shm_size: 2gb
+    hostname: chrome
+    privileged: true
+    shm_size: 2g
 
   redis:
     image: redis:alpine

@@ -21,7 +21,8 @@ services:
       - chrome
 
   db:
-    image: postgres:10-alpine
+    image: postgres:latest
+    restart: always
     env_file:
       - ./.env.dev
     volumes:

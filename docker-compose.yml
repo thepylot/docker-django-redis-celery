@@ -40,7 +40,7 @@ services:
     restart: always
     build:
       context: .
-    command: celery -A app worker -l info
+    command: celery -A app worker --loglevel=INFO --concurrency=8 -O fair
     volumes:
       - ./app:/app
     env_file:

@@ -32,4 +32,4 @@ def ScrapeResult():
     driver = webdriver.Remote('http://chrome:4444/wd/hub',options=options)
     driver.get('https://www.google.com/')
     driver.save_screenshot('image.png')
-    driver.Quit();
+    

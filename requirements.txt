@@ -7,3 +7,4 @@ scipy
 selenium
 psycopg2
 redis
+django-celery-beat

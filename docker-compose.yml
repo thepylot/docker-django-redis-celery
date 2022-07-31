@@ -29,6 +29,7 @@ services:
 
   chrome:
     image: selenium/standalone-chrome
+    hostname: chrome
     privileged: true
     shm_size: 2g
 
@@ -53,7 +54,7 @@ services:
     restart: always
     build:
       context: .
-    command: celery -A app beat -l info
+    command: celery -A app beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
     volumes:
       - ./app:/app
     env_file:

@@ -30,7 +30,7 @@ services:
   chrome:
     image: selenium/standalone-chrome:latest
     ports:
-      - 4444:4444
+      - 5555:5555
     shm_size: 2gb
 
   redis:

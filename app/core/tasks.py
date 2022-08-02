@@ -108,6 +108,8 @@ def ScrapeResult():
         except:
             print('country')
 
+        print(country)
+
         df = pd.DataFrame(all_matches, columns=[
             'Date', 'HomeTeam', 'AwayTeam', 'FTHG', 'FTAG'])
         df.loc[df['FTHG'] > df['FTAG'], 'FTR'] = 'H'
@@ -320,7 +322,7 @@ def ScrapeResult():
             home_probs = (poisson.pmf(range(11), HEG))
             away_probs = (poisson.pmf(range(11), AEG))
             m = (np.outer(home_probs, away_probs))
-            fixture = f"{country}:+ '' + {row['HomeTeam']} + '' + 'vs' + '' + {row['AwayTeam']}"
+            fixture = f"{row['HomeTeam']} vs {row['AwayTeam']}"
             home_win = ((np.sum(np.tril(m, -1)))*100).round(2)
             draw = ((np.sum(np.diag(m)))*100).round(2)
             away_win = ((np.sum(np.triu(m, 1)))*100).round(2)

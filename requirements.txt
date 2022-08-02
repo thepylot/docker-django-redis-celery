@@ -4,6 +4,7 @@ webdriver-manager
 numpy
 pandas
 scipy
+gunicorn
 selenium
 psycopg2
 redis
